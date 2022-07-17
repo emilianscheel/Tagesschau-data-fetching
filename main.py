@@ -1,9 +1,16 @@
 import urllib3
 from datetime import datetime
 import json
+import os
 
 
 dataFolder = "data/"
+
+
+def dataFolder():
+
+    if (os.path.exists(dataFolder) == False):
+        os.mkdir(dataFolder)
 
 
 def fetch():
@@ -30,4 +37,5 @@ def fetch():
 
 
 if __name__ == "__main__":
+    dataFolder()
     fetch()
