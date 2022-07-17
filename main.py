@@ -7,7 +7,7 @@ import os
 dataFolder = "data/"
 
 
-def dataFolder():
+def createDataFolder():
 
     if (os.path.exists(dataFolder) == False):
         os.mkdir(dataFolder)
@@ -37,5 +37,5 @@ def fetch():
 
 
 if __name__ == "__main__":
-    dataFolder()
+    createDataFolder()
     fetch()
