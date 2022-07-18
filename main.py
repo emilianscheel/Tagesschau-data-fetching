@@ -1,10 +1,12 @@
+#!/usr/bin/python
+
 import urllib3
 from datetime import datetime
 import json
 import os
 
 
-dataFolder = "data/"
+dataFolder = os.path.abspath('') + "data/"
 
 
 def createDataFolder():
@@ -29,7 +31,8 @@ def fetch():
 
     filename = timestamp + ".json"
 
-    open(dataFolder + filename, "x")
+    if not os.path.isfile(dataFolder + filename):
+        open(dataFolder + filename, "x")
 
     file = open(dataFolder + filename, "w")
     file.write(json.dumps(jsonData))
