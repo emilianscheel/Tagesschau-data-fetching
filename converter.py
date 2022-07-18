@@ -47,6 +47,8 @@ def convert():
             if (not 'sophoraId' in news):
                 continue
 
+            # if news article in database with same sophoraId already exists,
+            # then just update lastDownload property
             if any(x['sophoraId'] == news['sophoraId'] for x in database):
                 for x in database:
                     if (x['sophoraId'] == news['sophoraId']):
@@ -59,23 +61,38 @@ def convert():
                 "content": "",
                 "firstDownload": dataFromDate,
                 "lastDownload": dataFromDate,
-                "author": ""
+                "author": "",
+                "tags": [],
+                "geotags": [],
+                "ressort": news['ressort'] if 'ressort' in news else "",
+                "breakingNews": news['breakingNews'] if 'breakingNews' in news else "",
             }
 
-            if (not 'content' in news):
-                continue
+            # add tags
+            if 'tags' in news:
+                for tag in news['tags']:
+                    newsObject["tags"].append(tag["tag"])
 
-            for contentSection in news["content"]:
-                if (contentSection["type"] == "text" or contentSection["type"] == "headline"):
+            # add geotags
+            if 'geotags' in news:
+                for geotag in news['geotags']:
+                    newsObject["geotags"].append(geotag["tag"])
 
-                    sectionValue = removeHTMLTags(
-                        contentSection["value"]).replace("\"", "")
+            # handling content
+            if 'content' in news:
+                for contentSection in news["content"]:
+                    if (contentSection["type"] == "text" or contentSection["type"] == "headline"):
+                        sectionValue = removeHTMLTags(
+                            contentSection["value"]).replace("\"", "")
 
-                    if (sectionValue.startswith("Von")):
-                        newsObject["author"] = sectionValue.replace("Von ", "")
-                        continue
+                        # add author
+                        if (sectionValue.startswith("Von")):
+                            newsObject["author"] = sectionValue.replace(
+                                "Von ", "")
+                            continue
 
-                    newsObject["content"] += "\n" + sectionValue
+                        # add content
+                        newsObject["content"] += sectionValue if newsObject["content"] == "" else "\n" + sectionValue
 
             database.append(newsObject)
 
@@ -83,7 +100,7 @@ def convert():
         open(dataFolder + "database.json", "x")
 
     file = open(dataFolder + "database.json", "w")
-    file.write(json.dumps(database, ensure_ascii=False))
+    file.write(json.dumps(database, ensure_ascii=False, indent=4))
     file.close()
 
 
