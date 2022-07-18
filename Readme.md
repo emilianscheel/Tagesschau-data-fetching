@@ -1,13 +1,19 @@
-###
+# python script that downloads data from tagesschau.de
 
-Number of files in directory
+- number of files in directory
 
 ```sh
 find . -type f | wc -l
 ```
 
-Size of folder
+- get size of folder
 
 ```sh
 du -hs
+```
+
+### dateformat
+
+```python
+dateFormat = "%d-%m-%Y--%H-%M-%S"
 ```
