@@ -1,5 +1,11 @@
 # python script that downloads data from tagesschau.de
 
+### links
+
+- [Python Graph Gallery](https://www.python-graph-gallery.com/)
+
+### snippets
+
 - number of files in directory
 
 ```sh

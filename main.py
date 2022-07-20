@@ -4,15 +4,11 @@ import urllib3
 from datetime import datetime
 import json
 import os
+from converter import convert
+from converter import createDatabaseDir
 
 
 dataFolder = os.path.abspath('') + "data/"
-
-
-def createDataFolder():
-
-    if (os.path.exists(dataFolder) == False):
-        os.mkdir(dataFolder)
 
 
 def fetch():
@@ -29,6 +25,9 @@ def fetch():
         return
     jsonData = json.loads(request.data.decode('utf-8'))
 
+    convert(jsonData=jsonData, timestamp=timestamp)
+
+    """
     filename = timestamp + ".json"
 
     if not os.path.isfile(dataFolder + filename):
@@ -37,8 +36,9 @@ def fetch():
     file = open(dataFolder + filename, "w")
     file.write(json.dumps(jsonData))
     file.close()
+    """
 
 
 if __name__ == "__main__":
-    createDataFolder()
+    createDatabaseDir()
     fetch()
