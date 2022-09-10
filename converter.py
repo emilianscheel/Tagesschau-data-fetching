@@ -84,11 +84,12 @@ def convert(jsonData={}, timestamp="", filePaths=[]):
             if 'content' in news:
                 for contentSection in news["content"]:
                     if (contentSection["type"] == "text" or contentSection["type"] == "headline"):
+                        sectionValueRaw = contentSection["value"]
                         sectionValue = removeHTMLTags(
-                            contentSection["value"]).replace("\"", "")
+                            sectionValueRaw).replace("\"", "")
 
                         # add author
-                        if (sectionValue.startswith("Von")):
+                        if (sectionValueRaw.startswith("<em>Von")):
                             newsFrom = sectionValue.replace(
                                 'Von ', '').split(', ')
                             newsObject["author"] = newsFrom.pop(0)
