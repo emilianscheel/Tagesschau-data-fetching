@@ -57,12 +57,13 @@ sudo nano /etc/systemd/system/tagesschau-data-fetching.service
 ```
 [Unit]
 Description=Tagesschau data fetching
+User=<user>
 After=multi-user.target
 Wants=tagesschau-data-fetching.timer
 
 [Service]
 Type=oneshot
-WorkingDirectory=/home/<user>/apps/tagesschau-data-fetching/
+WorkingDirectory=/home/<user>/apps/Tagesschau-data-fetching/
 ExecStart=/usr/bin/python3 main.py
 
 [Install]
@@ -88,6 +89,17 @@ OnCalendar=*:0/11
 
 [Install]
 WantedBy=timers.target
+```
+
+
+```sh
+# starts and enables service
+systemctl enable spiegel-data-fetching.service
+sudo systemctl start spiegel-data-fetching.service
+
+# starts and enables timer
+systemctl enable spiegel-data-fetching.timer
+sudo systemctl start spiegel-data-fetching.timer
 ```
 
 That configuration starts our system service every eleven minutes. The system service triggers the `main.py` script which is the fetching the tagesschau api.
