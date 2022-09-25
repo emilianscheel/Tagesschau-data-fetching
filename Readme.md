@@ -16,6 +16,11 @@ find . -type f | wc -l
 du -hs
 ```
 
+```sh
+# gets last modified of file
+stat database.json
+```
+
 ### Depends on
 
 - `python3`
