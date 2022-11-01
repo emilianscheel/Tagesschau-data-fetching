@@ -7,6 +7,11 @@
 ### Useful snippets
 
 ```sh
+# gets json length from input file
+jq length database.json
+```
+
+```sh
 # gets number of files in currrent dir
 find . -type f | wc -l
 ```
