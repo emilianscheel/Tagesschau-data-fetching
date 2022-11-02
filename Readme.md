@@ -104,14 +104,14 @@ WantedBy=timers.target
 
 ```sh
 # starts and enables service, view status
-sudo systemctl enable spiegel-data-fetching.service
-sudo systemctl start spiegel-data-fetching.service
-sudo systemctl status spiegel-data-fetching.service
+sudo systemctl enable tagesschau-data-fetching.service
+sudo systemctl start tagesschau-data-fetching.service
+sudo systemctl status tagesschau-data-fetching.service
 
 # starts and enables timer, view status
-sudo systemctl enable spiegel-data-fetching.timer
-sudo systemctl start spiegel-data-fetching.timer
-sudo systemctl status spiegel-data-fetching.timer
+sudo systemctl enable tagesschau-data-fetching.timer
+sudo systemctl start tagesschau-data-fetching.timer
+sudo systemctl status tagesschau-data-fetching.timer
 ```
 
 That configuration starts our system service every eleven minutes. The system service triggers the `main.py` script which is the fetching the tagesschau api.
