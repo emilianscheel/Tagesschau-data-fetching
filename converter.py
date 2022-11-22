@@ -1,7 +1,8 @@
-import os
-import json
 import datetime
+import json
+import os
 import re
+
 from bs4 import BeautifulSoup
 
 dataFolder = os.path.abspath('') + "/data/"
@@ -32,7 +33,7 @@ def convert(jsonData={}, timestamp="", filePaths=[]):
         dataFromDate = datetime.datetime.strptime(
             timestamp, dateFormat).strftime(dateFormat)
 
-        for news in jsonData["news"]:
+        for index, news in enumerate(jsonData["news"]):
 
             if not 'sophoraId' in news:
                 continue
@@ -60,10 +61,15 @@ def convert(jsonData={}, timestamp="", filePaths=[]):
                 "related": [],
                 "ressort": news['ressort'] if 'ressort' in news else "",
                 "breakingNews": news['breakingNews'] if 'breakingNews' in news else "",
-                "category": ""
+                "category": "",
+                "rankings": []
             }
 
-            # add tags
+            # add ranking
+            if index not in newsObject["rankings"]:
+                newsObject["rankings"].append(index)
+
+                # add tags
             if 'tags' in news:
                 for tag in news['tags']:
                     newsObject["tags"].append(tag["tag"])
