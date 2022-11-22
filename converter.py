@@ -45,6 +45,9 @@ def convert(jsonData={}, timestamp="", filePaths=[]):
                     if (x['sophoraId'] == news['sophoraId']):
                         x["lastDownload"] = dataFromDate
 
+                        if 'rankings' not in x:
+                            x['rankings'] = []
+
                         # add new ranking
                         x["rankings"].append(
                             {"timestamp": dataFromDate, "score": index+1})
