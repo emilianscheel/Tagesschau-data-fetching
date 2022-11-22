@@ -44,6 +44,10 @@ def convert(jsonData={}, timestamp="", filePaths=[]):
                 for x in database:
                     if (x['sophoraId'] == news['sophoraId']):
                         x["lastDownload"] = dataFromDate
+
+                        # add new ranking
+                        x["rankings"].append(
+                            {"timestamp": dataFromDate, "score": index+1})
                 continue
 
             newsObject = {
@@ -67,7 +71,8 @@ def convert(jsonData={}, timestamp="", filePaths=[]):
 
             # add ranking
             if index not in newsObject["rankings"]:
-                newsObject["rankings"].append(index)
+                newsObject["rankings"].append(
+                    {"timestamp": dataFromDate, "score": index+1})
 
                 # add tags
             if 'tags' in news:
