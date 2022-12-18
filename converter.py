@@ -77,7 +77,7 @@ def convert(jsonData={}, timestamp="", filePaths=[]):
                 newsObject["rankings"].append(
                     {"timestamp": dataFromDate, "score": index+1})
 
-                # add tags
+            # add tags
             if 'tags' in news:
                 for tag in news['tags']:
                     newsObject["tags"].append(tag["tag"])

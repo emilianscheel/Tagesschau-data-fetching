@@ -1,12 +1,12 @@
 #!/usr/bin/python
 
-import urllib3
-from datetime import datetime
 import json
 import os
-from converter import convert
-from converter import createDatabaseDir
+from datetime import datetime
 
+import urllib3
+
+from converter import convert, createDatabaseDir
 
 dataFolder = os.path.abspath('') + "data/"
 
@@ -16,8 +16,7 @@ def fetch():
     apiURL = "https://www.tagesschau.de/api2/"
 
     dateTimeObj = datetime.now()
-    timestamp = dateTimeObj.strftime(
-        "%d-%m-%Y--%H-%M-%S")
+    timestamp = dateTimeObj.strftime("%d-%m-%Y--%H-%M-%S")
 
     http = urllib3.PoolManager()
     request = http.request('GET', apiURL)
