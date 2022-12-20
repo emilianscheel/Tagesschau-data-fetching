@@ -1,0 +1,8 @@
+# ORANGE
+- edgecolor: #e07a5f
+- color: #f2cc8f
+
+
+# BLUE
+- edgecolor: #219ebc
+- color: #8ecae6

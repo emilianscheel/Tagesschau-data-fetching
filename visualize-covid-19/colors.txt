@@ -1,8 +1,0 @@
-# Orange
-- edgecolor: #e07a5f
-- color: #f2cc8f
-
-
-# Blue
-- edgecolor: #219ebc
-- color: #8ecae6
