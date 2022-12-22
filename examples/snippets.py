@@ -35,7 +35,7 @@ df_range1 = df.loc[(df['date'] >= "2022-07-16") & (df['date'] <= "2022-10-27")]
 
 # use dark theme (automatically)
 """
-plt.style.use('seaborn-darkgrid')
+plt.style.use('dark_background') # or 'default'
 """
 
 
